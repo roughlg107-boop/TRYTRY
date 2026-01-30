@@ -113,6 +113,22 @@ git push -u origin main
 
 ## 常見問題
 
+### 部署失敗：OPENAI_API_KEY environment variable is missing or empty
+
+**原因**：Render 上沒有設定 `OPENAI_API_KEY`，或建立服務時沒填。
+
+**作法**：
+
+1. 登入 [Render Dashboard](https://dashboard.render.com)，點進你的 **Web Service**（後端）。
+2. 左側選 **Environment**。
+3. 點 **Add Environment Variable**（或 **Add Key**）。
+4. **Key** 填：`OPENAI_API_KEY`  
+   **Value** 填：你的 OpenAI API Key（從 [OpenAI API keys](https://platform.openai.com/api-keys) 複製，勿加空格或引號）。
+5. 儲存後，Render 會**自動重新部署**；等 Deploy 完成，服務就會正常啟動。
+6. 開啟 `https://你的服務名.onrender.com/health` 應看到 `{"ok":true}`。
+
+程式已改為「未設 key 時仍可啟動」，只有呼叫抽取／產出 API 時才會回傳錯誤；但若要正常使用，**一定要在 Render 的 Environment 填上 OPENAI_API_KEY**。
+
 ### Render 說找不到 `shared/templates.json`
 
 本專案後端在執行時會從 **repo 根目錄** 讀取 `shared/templates.json`（路徑為 `backend` 的上一層）。  

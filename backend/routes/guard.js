@@ -22,9 +22,23 @@ const ADVISORY_WORDS = [
   "市場趨勢", "行銷價值", "品牌建立"
 ];
 
+// 強制修正指令：禁止出現在簡報內文／標題的詞彙（業務對老闆講話用語規則）
+const BANNED_PHRASES = [
+  "功能角色", "本頁", "目前顯示", "有助於", "計畫制定", "後續執行", "顯示出",
+  "待確認"  // 缺漏時應使用「這一段我們等下確認」，不得用「待確認」
+];
+
 function checkAdvisory(text) {
   const found = [];
   for (const w of ADVISORY_WORDS) {
+    if (text && text.includes(w)) found.push(w);
+  }
+  return found;
+}
+
+function checkBannedPhrases(text) {
+  const found = [];
+  for (const w of BANNED_PHRASES) {
     if (text && text.includes(w)) found.push(w);
   }
   return found;
@@ -70,11 +84,32 @@ export function runGuard(presentation, template) {
   let finalOutput = JSON.parse(JSON.stringify(presentation));
   let hasAdvisory = false;
   let hasRoleOverreach = false;
+  let hasBannedPhrase = false;
 
   for (let i = 0; i < finalOutput.slides.length; i++) {
     const slide = finalOutput.slides[i];
     const tSlide = templateSlides[i];
     if (!tSlide) continue;
+
+    const titleBanned = checkBannedPhrases(slide.title);
+    const bodyBanned = checkBannedPhrases(slide.body);
+    if (titleBanned.length > 0 || bodyBanned.length > 0) {
+      hasBannedPhrase = true;
+      for (const w of titleBanned) {
+        violations.push({
+          type: "banned_phrase",
+          description: `禁止用語（業務對老闆講話規則）：${w}`,
+          location: `slide_${i + 1}.title`
+        });
+      }
+      for (const w of bodyBanned) {
+        violations.push({
+          type: "banned_phrase",
+          description: `禁止用語（業務對老闆講話規則）：${w}`,
+          location: `slide_${i + 1}.body`
+        });
+      }
+    }
 
     const titleAdvisory = checkAdvisory(slide.title);
     const bodyAdvisory = checkAdvisory(slide.body);
@@ -122,6 +157,14 @@ export function runGuard(presentation, template) {
   }
 
   if (hasRoleOverreach) {
+    return {
+      status: "fail",
+      violations,
+      final_output: null
+    };
+  }
+
+  if (hasBannedPhrase) {
     return {
       status: "fail",
       violations,

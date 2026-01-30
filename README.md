@@ -99,12 +99,15 @@ npm run dev
 
 ### 前端（Firebase Hosting）逐步
 
-1. 於 [Firebase Console](https://console.firebase.google.com) 建立專案，啟用 **Hosting**、**Authentication**（匿名登入，可選）。  
-2. 本機安裝 Firebase CLI：`npm i -g firebase-tools`，執行 `firebase login`。  
-3. 在**專案根目錄**執行 `firebase init`，選 **Hosting**；**Public directory** 填 `frontend/dist`；單頁應用選 No（或 Yes 皆可）。  
-4. 在 `frontend` 目錄建立 `.env.production` 或建置前設定環境變數：  
-   `VITE_API_BASE_URL=https://你的Render後端URL`（例如 `https://presentation-backend-xxx.onrender.com`，勿加尾端斜線）。  
-5. 建置前端：`cd frontend && npm run build`。  
+**完整步驟**：請直接參考 [部署指南：Firebase Hosting](docs/部署指南-Firebase.md)。
+
+簡述：
+
+1. 於 [Firebase Console](https://console.firebase.google.com) **建立專案**，啟用 **Hosting**。  
+2. 本機執行 `npm i -g firebase-tools`、`firebase login`。  
+3. 在**專案根目錄**執行 `firebase use --add`，選取你的 Firebase 專案（專案已含 `firebase.json`，public 為 `frontend/dist`）。  
+4. 在 `frontend` 目錄建立 **`.env.production`**，內容：`VITE_API_BASE_URL=https://你的Render後端URL`（勿加尾端斜線）。  
+5. 建置前端：`cd frontend && npm install && npm run build`。  
 6. 部署：在專案根目錄執行 `firebase deploy --only hosting`。  
 7. 完成後 Firebase 會顯示 **Hosting URL**（如 `https://xxx.web.app`）。  
 8. **將這個網址分享給使用者**：使用者只需在瀏覽器開啟此網址，無需安裝或設定任何東西，即可依 STEP 1 → 3 操作。
