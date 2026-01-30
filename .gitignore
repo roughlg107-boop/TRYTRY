@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+
+# Environment and secrets (never commit real keys)
+.env
+.env.local
+.env.*.local
+*.env
+backend/.env
+frontend/.env
+frontend/.env.local
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Logs and debug
+*.log
+npm-debug.log*
+.DS_Store
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+
+# Testing / Coverage
+coverage/
+.nyc_output/
+
+# Misc
+*.tgz
+.cache/

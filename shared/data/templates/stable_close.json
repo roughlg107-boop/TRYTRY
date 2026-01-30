@@ -1,0 +1,68 @@
+{
+  "template_id": "stable_close",
+  "template_name": "穩定成交型",
+  "intended_usage": "最常用。適用於已與決策者見面、有基本預算與時程討論空間的 B2B 第二次拜訪，採標準成交節奏：共識建立 → 需求對焦 → 風險定位 → 差異對照 → 方案對應 → 選項收斂 → 異議預處理 → 確認下一步。",
+  "absolute_exclusion_conditions": [
+    "報告中明確提及預算極度有限或僅能小額試單",
+    "報告中明確提及決策者尚未見面或僅透過窗口接觸",
+    "報告中明確提及高層要求本週內必須定案且客戶方資源或共識明顯不足"
+  ],
+  "slides": [
+    {
+      "slide_number": 1,
+      "function_role": "共識建立",
+      "title_pattern": "今天我們聚焦在 ___",
+      "content_rules": "不可推銷方案、不可承諾成效；僅陳述今天要討論的範圍與共識基礎。",
+      "allowed_variables": ["company_profile.company_name", "explicit_goals.stated_goals"]
+    },
+    {
+      "slide_number": 2,
+      "function_role": "需求對焦",
+      "title_pattern": "現階段重點不在 ___ ，而在 ___",
+      "content_rules": "不可否定客戶現狀；僅對焦報告中已寫出的需求與時程。",
+      "allowed_variables": ["explicit_goals.stated_goals", "explicit_goals.timeframe_mentions", "current_marketing_status.current_problems_mentioned"]
+    },
+    {
+      "slide_number": 3,
+      "function_role": "風險定位",
+      "title_pattern": "若不做 ___ ，可能面對 ___",
+      "content_rules": "不可誇大風險、不可恐嚇；僅就報告中已提及的顧慮或限制做中性陳述。",
+      "allowed_variables": ["constraints_and_concerns.explicit_concerns", "current_marketing_status.current_problems_mentioned"]
+    },
+    {
+      "slide_number": 4,
+      "function_role": "差異對照",
+      "title_pattern": "和您現在的做法相比，差異在 ___",
+      "content_rules": "不可貶低客戶現有做法；僅對照報告中已寫的現有管道或做法。",
+      "allowed_variables": ["current_marketing_status.existing_channels", "current_marketing_status.short_video_experience"]
+    },
+    {
+      "slide_number": 5,
+      "function_role": "方案對應",
+      "title_pattern": "針對 ___ ，我們可以 ___",
+      "content_rules": "不可過度承諾成效或時程；僅對應報告中已寫的目標與限制。",
+      "allowed_variables": ["explicit_goals.stated_goals", "constraints_and_concerns.budget_mentions", "constraints_and_concerns.time_or_resource_limits"]
+    },
+    {
+      "slide_number": 6,
+      "function_role": "選項收斂",
+      "title_pattern": "接下來可以選 ___ 或 ___",
+      "content_rules": "不可只給單一選項；須給出有限選項並說明差異，不代客戶做決定。",
+      "allowed_variables": ["explicit_goals.timeframe_mentions", "decision_makers.primary_decision_maker"]
+    },
+    {
+      "slide_number": 7,
+      "function_role": "異議預處理",
+      "title_pattern": "您可能會想 ___ ；實際上是 ___",
+      "content_rules": "不可強辯；僅就報告中已寫的顧慮做簡短回應，不延伸新議題。",
+      "allowed_variables": ["constraints_and_concerns.explicit_concerns", "decision_makers.decision_style_notes"]
+    },
+    {
+      "slide_number": 8,
+      "function_role": "確認",
+      "title_pattern": "請確認：我們下一步是 ___",
+      "content_rules": "不可新增未討論的承諾；僅總結報告中已對焦的下一步與負責人。",
+      "allowed_variables": ["decision_makers.primary_decision_maker", "decision_makers.other_influencers", "explicit_goals.timeframe_mentions"]
+    }
+  ]
+}

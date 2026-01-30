@@ -1,0 +1,46 @@
+{
+  "template_id": "fast_forward",
+  "template_name": "推進加速型",
+  "intended_usage": "適用於決策者已授權、時程緊、希望快速推進的情境。節奏快、頁數少：共識（快）→ 差異對照 → 方案對應 → 選項收斂 → 確認；不展開長篇風險與異議處理。",
+  "absolute_exclusion_conditions": [
+    "報告中明確提及需要再內部討論或尚未取得共識",
+    "報告中明確提及預算需分批審核或先試跑再決定是否擴大"
+  ],
+  "slides": [
+    {
+      "slide_number": 1,
+      "function_role": "共識建立（快）",
+      "title_pattern": "今天目標：___",
+      "content_rules": "不可拉長背景；僅一句話對焦今天要決定的範圍與目標。",
+      "allowed_variables": ["company_profile.company_name", "explicit_goals.stated_goals", "explicit_goals.timeframe_mentions"]
+    },
+    {
+      "slide_number": 2,
+      "function_role": "差異對照",
+      "title_pattern": "和現狀的差異：___",
+      "content_rules": "不可展開多頁；僅一頁對照報告中已寫的現有做法與可改變點。",
+      "allowed_variables": ["current_marketing_status.existing_channels", "current_marketing_status.current_problems_mentioned"]
+    },
+    {
+      "slide_number": 3,
+      "function_role": "方案對應",
+      "title_pattern": "針對 ___ ，我們可以 ___",
+      "content_rules": "不可過度承諾；僅對應報告中已寫的目標與時程，直接給方案輪廓。",
+      "allowed_variables": ["explicit_goals.stated_goals", "explicit_goals.timeframe_mentions", "constraints_and_concerns.time_or_resource_limits"]
+    },
+    {
+      "slide_number": 4,
+      "function_role": "選項收斂",
+      "title_pattern": "請選擇：___ 或 ___",
+      "content_rules": "不可模糊；僅給出有限選項與建議，由決策者點選。",
+      "allowed_variables": ["decision_makers.primary_decision_maker", "explicit_goals.timeframe_mentions"]
+    },
+    {
+      "slide_number": 5,
+      "function_role": "確認",
+      "title_pattern": "下一步：___ ，負責人 ___",
+      "content_rules": "不可新增未討論項目；僅總結下一步、負責人與時程。",
+      "allowed_variables": ["decision_makers.primary_decision_maker", "decision_makers.other_influencers", "explicit_goals.timeframe_mentions"]
+    }
+  ]
+}

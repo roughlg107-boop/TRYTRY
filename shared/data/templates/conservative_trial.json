@@ -1,0 +1,53 @@
+{
+  "template_id": "conservative_trial",
+  "template_name": "保守試水型",
+  "intended_usage": "適用於預算有限、決策者對風險敏感、需要「先試一點再擴大」的情境。節奏較短，強調可控與低風險：共識建立 → 風險定位（可控）→ 差異對照（低風險）→ 小步選項 → 顧慮回應 → 確認。",
+  "absolute_exclusion_conditions": [
+    "報告中明確提及預算充足或可接受較高投入",
+    "報告中明確提及高層要求快速全面推動或希望一次到位"
+  ],
+  "slides": [
+    {
+      "slide_number": 1,
+      "function_role": "共識建立",
+      "title_pattern": "今天只談 ___ ，不談 ___",
+      "content_rules": "不可擴大範圍；僅界定本次討論邊界，降低決策壓力。",
+      "allowed_variables": ["company_profile.company_name", "explicit_goals.stated_goals"]
+    },
+    {
+      "slide_number": 2,
+      "function_role": "風險定位（可控）",
+      "title_pattern": "若先做 ___ ，風險可控在 ___",
+      "content_rules": "不可淡化風險也不可誇大；僅就報告中已寫的顧慮說明「小步」如何控制風險。",
+      "allowed_variables": ["constraints_and_concerns.explicit_concerns", "constraints_and_concerns.budget_mentions", "constraints_and_concerns.time_or_resource_limits"]
+    },
+    {
+      "slide_number": 3,
+      "function_role": "差異對照（低風險）",
+      "title_pattern": "和您現在的做法相比，變動最小的是 ___",
+      "content_rules": "不可建議大規模改變；僅對照報告中現有做法，強調「變動最小」的選項。",
+      "allowed_variables": ["current_marketing_status.existing_channels", "current_marketing_status.short_video_experience"]
+    },
+    {
+      "slide_number": 4,
+      "function_role": "小步選項",
+      "title_pattern": "第一步可以是 ___ ，再視結果決定 ___",
+      "content_rules": "不可推銷大方案；僅給出最小可行第一步，並明確「可再議」。",
+      "allowed_variables": ["explicit_goals.stated_goals", "explicit_goals.timeframe_mentions", "decision_makers.primary_decision_maker"]
+    },
+    {
+      "slide_number": 5,
+      "function_role": "顧慮回應",
+      "title_pattern": "您提到的 ___ ，我們可以這樣處理：___",
+      "content_rules": "不可否定客戶顧慮；僅就報告中已寫的顧慮做簡短、具體回應。",
+      "allowed_variables": ["constraints_and_concerns.explicit_concerns", "decision_makers.decision_style_notes"]
+    },
+    {
+      "slide_number": 6,
+      "function_role": "確認",
+      "title_pattern": "請確認：我們下一步只做 ___",
+      "content_rules": "不可加入未討論的承諾；僅總結「最小下一步」與負責人。",
+      "allowed_variables": ["decision_makers.primary_decision_maker", "explicit_goals.timeframe_mentions"]
+    }
+  ]
+}
